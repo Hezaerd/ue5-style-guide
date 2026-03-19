@@ -1,8 +1,8 @@
-import { createFileRoute, notFound } from '@tanstack/react-router';
-import { DocsLayout } from 'fumadocs-ui/layouts/docs';
-import { createServerFn } from '@tanstack/react-start';
-import { source } from '@/lib/source';
-import browserCollections from 'collections/browser';
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import { createServerFn } from "@tanstack/react-start";
+import { source } from "@/lib/source";
+import browserCollections from "collections/browser";
 import {
   DocsBody,
   DocsDescription,
@@ -10,26 +10,28 @@ import {
   DocsTitle,
   MarkdownCopyButton,
   ViewOptionsPopover,
-} from 'fumadocs-ui/layouts/docs/page';
-import { baseOptions, gitConfig } from '@/lib/layout.shared';
-import { useFumadocsLoader } from 'fumadocs-core/source/client';
-import { Suspense } from 'react';
-import { useMDXComponents } from '@/components/mdx';
+} from "fumadocs-ui/layouts/docs/page";
+import { baseOptions, gitConfig } from "@/lib/layout.shared";
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions";
+import { useFumadocsLoader } from "fumadocs-core/source/client";
+import { Suspense } from "react";
+import { useMDXComponents } from "@/components/mdx";
 
-export const Route = createFileRoute('/docs/$')({
+export const Route = createFileRoute("/docs/$")({
   component: Page,
   loader: async ({ params }) => {
-    const slugs = params._splat?.split('/') ?? [];
-    const data = await serverLoader({ data: slugs });
+    const slugs = params._splat?.split("/") ?? [];
+    const data = await loader({ data: slugs });
     await clientLoader.preload(data.path);
     return data;
   },
 });
 
-const serverLoader = createServerFn({
-  method: 'GET',
+const loader = createServerFn({
+  method: "GET",
 })
   .inputValidator((slugs: string[]) => slugs)
+  .middleware([staticFunctionMiddleware])
   .handler(async ({ data: slugs }) => {
     const page = source.getPage(slugs);
     if (!page) throw notFound();
@@ -73,12 +75,15 @@ const clientLoader = browserCollections.docs.createClientLoader({
 });
 
 function Page() {
-  const { path, pageTree, slugs } = useFumadocsLoader(Route.useLoaderData());
-  const markdownUrl = `/llms.mdx/docs/${slugs.join('/')}`;
+  const { pageTree, slugs, path } = useFumadocsLoader(Route.useLoaderData());
+  const markdownUrl = `/llms.mdx/docs/${[...slugs, "index.mdx"].join("/")}`;
 
   return (
     <DocsLayout {...baseOptions()} tree={pageTree}>
-      <Suspense>{clientLoader.useContent(path, { markdownUrl, path })}</Suspense>
+      <Link to={markdownUrl} hidden />
+      <Suspense>
+        {clientLoader.useContent(path, { markdownUrl, path })}
+      </Suspense>
     </DocsLayout>
   );
 }
