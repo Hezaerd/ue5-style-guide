@@ -5,19 +5,19 @@ description: Naming, editability, categories, and access level conventions for B
 
 The words "variable" and "property" may be used interchangeably.
 
-## 3.2.1 Naming
+## Naming
 
-### 3.2.1.1 Nouns
+### Nouns
 
 All non-boolean variable names must be clear, unambiguous, and descriptive nouns.
 
-### 3.2.1.2 PascalCase
+### PascalCase
 
 All non-boolean variables should be in PascalCase.
 
 **Examples:** `Score`, `Kills`, `TargetPlayer`, `Range`, `CrosshairColor`, `AbilityID`
 
-### 3.2.1.3 Boolean `b` Prefix
+### Boolean `b` Prefix
 
 All booleans should be named in PascalCase but prefixed with a lowercase `b`.
 
@@ -25,7 +25,7 @@ Example: Use `bDead` and `bEvil`, **not** `Dead` and `Evil`.
 
 UE5 Blueprint editors know not to include the `b` in user-friendly displays of the variable.
 
-### 3.2.1.4 Boolean Names
+### Boolean Names
 
 #### General and Independent State Information
 
@@ -43,7 +43,7 @@ Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if
 
 Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
 
-### 3.2.1.5 Considered Context
+### Considered Context
 
 All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
 
@@ -60,7 +60,7 @@ Consider a Blueprint called `BP_PlayerCharacter`:
 
 All of the "bad" variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to.
 
-### 3.2.1.6 Do Not Include Atomic Type Names
+### Do Not Include Atomic Type Names
 
 Atomic or primitive variables are variables that represent data in their simplest form, such as booleans, integers, floats, and enumerations. Strings and vectors are considered atomic in terms of style when working with Blueprints.
 
@@ -76,7 +76,7 @@ The only exception is when a variable represents "a number of" something to be c
 
 Example: A fence generator needs to generate X number of posts. Store X in `NumPosts` or `PostsCount` instead of `Posts` as `Posts` may potentially read as an Array of a variable type named `Post`.
 
-### 3.2.1.7 Do Include Non-Atomic Type Names
+### Do Include Non-Atomic Type Names
 
 Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify.
 
@@ -88,7 +88,7 @@ If a class does not own the value a complex variable represents, use a noun alon
 
 Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` — when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
 
-### 3.2.1.8 Arrays
+### Arrays
 
 Arrays follow the same naming rules as above, but should be named as a plural noun.
 
@@ -96,7 +96,7 @@ Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatAr
 
 ---
 
-## 3.2.2 Editable Variables
+## Editable Variables
 
 All variables that are safe to change the value of in order to configure behavior of a Blueprint should be marked as `Editable`.
 
@@ -104,11 +104,11 @@ Conversely, all variables that are not safe to change or should not be exposed t
 
 Do not arbitrarily mark variables as `Editable`.
 
-### 3.2.2.1 Tooltips
+### Tooltips
 
 All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the Blueprint.
 
-### 3.2.2.2 Slider and Value Ranges
+### Slider and Value Ranges
 
 All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
 
@@ -120,7 +120,7 @@ A Value Range only needs to be defined if the bounds of a value are known. While
 
 ---
 
-## 3.2.3 Categories
+## Categories
 
 If a class has only a small number of variables, categories are not required.
 
@@ -148,7 +148,7 @@ Example — a weapon class set of variables might be organized as:
 
 ---
 
-## 3.2.4 Variable Access Level
+## Variable Access Level
 
 In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
 
@@ -156,19 +156,19 @@ Blueprints do not have a defined concept of protected access currently.
 
 Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
 
-### 3.2.4.1 Private Variables
+### Private Variables
 
 Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
 
 ---
 
-## 3.2.5 Advanced Display
+## Advanced Display
 
 If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
 
 ---
 
-## 3.2.6 Transient Variables
+## Transient Variables
 
 Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors whose value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the Blueprint class.
 
@@ -176,6 +176,6 @@ All transient variables should always be initialized as zero or null. To do othe
 
 ---
 
-## 3.2.8 Config Variables
+## Config Variables
 
 Do not use the `Config Variable` flag. This makes it harder for designers to control Blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as "Advanced Advanced Display" variables.

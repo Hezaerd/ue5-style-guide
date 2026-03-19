@@ -11,7 +11,7 @@ In this style, we use a structure that relies more on filtering and search abili
 If you are using the prefix [naming convention](/docs/asset-naming), using folders to contain assets of similar types such as `Meshes`, `Textures`, and `Materials` is redundant — asset types are already sorted by prefix and filterable in the Content Browser.
 </Callout>
 
-## 2e1 Example Project Content Structure
+## Example Project Content Structure
 
 ```
 |-- Content
@@ -65,33 +65,33 @@ If you are using the prefix [naming convention](/docs/asset-naming), using folde
             |-- Rifles
 ```
 
-## 2.1 Folder Names
+## Folder Names
 
-### 2.1.1 Always Use PascalCase
+### Always Use PascalCase
 
 PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
 
-### 2.1.2 Never Use Spaces
+### Never Use Spaces
 
 Never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally, your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
 
-### 2.1.3 Never Use Unicode Characters and Other Symbols
+### Never Use Unicode Characters and Other Symbols
 
 If one of your game characters is named "Zoë", its folder name should be `Zoe`. Unicode characters can be worse than spaces for engineering tools, and some parts of UE5 don't support Unicode characters in paths either.
 
 Using other characters outside `a-z`, `A-Z`, and `0-9` such as `@`, `-`, `_`, `,`, `*`, and `#` can also lead to unexpected and hard to track issues on other platforms, source control, and weaker engineering tools.
 
-## 2.2 Use a Top Level Folder for Project Specific Assets
+## Use a Top Level Folder for Project Specific Assets
 
 All of a project's assets should exist in a folder named after the project. For example, if your project is named "Generic Shooter", all of its content should exist in `Content/GenericShooter`.
 
-### 2.2.1 No Global Assets
+### No Global Assets
 
 Often in code style guides it is written that you should not pollute the global namespace — this follows the same principle. When assets are allowed to exist outside of a project folder, it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project, it should be put in a [Developer folder](#23-use-developers-folder-for-local-testing).
+Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project, it should be put in a [Developer folder](#use-developers-folder-for-local-testing).
 
-### 2.2.2 Reduce Migration Conflicts
+### Reduce Migration Conflicts
 
 When working on multiple projects, it is common to copy assets from one project to another using the Content Browser's Migrate functionality. These dependencies can easily get you into trouble if two projects' assets do not have a top level folder and they happen to have similarly named or already previously migrated assets — a new migration can accidentally wipe any changes to existing assets.
 
@@ -103,15 +103,15 @@ Say you created a master material in one project that you would like to use in a
 
 As work progresses, their respective master materials may change to be tailored for their specific projects. The issue comes when an artist for one project creates a nice modular set of static meshes using material instances based on `Content/MaterialLibrary/M_Master`. When a migration is performed, there is a great chance of conflict for the previously migrated `Content/MaterialLibrary/M_Master` asset — potentially breaking the entire material library.
 
-### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+### Samples, Templates, and Marketplace Content Are Risk-Free
 
 As long as your project's top-level folder is uniquely named, new sample content, template files, or marketplace assets will not interfere with your project.
 
-### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+### DLC, Sub-Projects, and Patches Are Easily Maintained
 
 If your project plans to release DLC or has multiple sub-projects, assets relating to these should have their own separate top level content folder. This makes cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort.
 
-## 2.3 Use Developers Folder for Local Testing
+## Use Developers Folder for Local Testing
 
 During development, it is very common for team members to have a sort of "sandbox" where they can experiment freely without risking the core project. This work should go in a `Developers` folder.
 
@@ -119,7 +119,7 @@ The Content Browser has specific View Options that will hide Developer folders (
 
 Once assets are ready for use, an artist simply has to move them into the project specific folder and fix up redirectors — essentially "promoting" assets from experimental to production.
 
-## 2.4 All Map Files Belong in a Folder Called Maps
+## All Map Files Belong in a Folder Called Maps
 
 Map files are incredibly special and it is common for every project to have its own map naming system. No matter what system of map organization is in place, all levels should belong in `/Content/Project/Maps`.
 
@@ -127,7 +127,7 @@ Being able to tell someone to open a specific map without having to explain wher
 
 This also simplifies cooking for engineers, lighting build scripts, and QA processes.
 
-## 2.5 Use a `Core` Folder for Critical Blueprints
+## Use a `Core` Folder for Critical Blueprints
 
 Use `/Content/Project/Core` for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
 
@@ -135,13 +135,13 @@ This creates a clear "don't touch these" message for other team members. Non-eng
 
 For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior. Specific pickups such as Health or Ammo should exist in `/Content/Project/Placeables/Pickups/`.
 
-## 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
+## Do Not Create Folders Called `Assets` or `AssetTypes`
 
-### 2.6.1 Creating a Folder Named `Assets` Is Redundant
+### Creating a Folder Named `Assets` Is Redundant
 
 All assets are assets.
 
-### 2.6.2 Creating a Folder Named `Meshes`, `Textures`, or `Materials` Is Redundant
+### Creating a Folder Named `Meshes`, `Textures`, or `Materials` Is Redundant
 
 All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy-to-use filtering system the Content Browser provides.
 
@@ -151,7 +151,7 @@ Want to view only static meshes in `Environment/Rocks/`? Simply turn on the Stat
 This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
 </Callout>
 
-## 2.7 Very Large Asset Sets Get Their Own Folder Layout
+## Very Large Asset Sets Get Their Own Folder Layout
 
 There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
 
@@ -161,7 +161,7 @@ For example, animations that are shared across multiple characters should lay in
 This does not apply to assets like textures and materials. It is common for a `Rocks` folder to have a large amount of textures if there are many rocks, but these textures are generally only related to a few specific rocks and should be named appropriately.
 </Callout>
 
-## 2.8 `MaterialLibrary`
+## `MaterialLibrary`
 
 If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these should be located in `Content/Project/MaterialLibrary`.
 
@@ -173,7 +173,7 @@ The `MaterialLibrary` doesn't have to consist of purely materials. Shared utilit
 
 Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped before shipping and makes it apparent if production assets are using them.
 
-## 2.9 No Empty Folders
+## No Empty Folders
 
 There simply shouldn't be any empty folders. They clutter the Content Browser.
 

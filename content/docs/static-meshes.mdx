@@ -5,32 +5,32 @@ description: UV, LOD, collision, and scaling standards for static meshes in UE5.
 
 This section focuses on Static Mesh assets and their internals.
 
-## 4.1 Static Mesh UVs
+## Static Mesh UVs
 
 If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why it's failing.
 
-### 4.1.1 All Meshes Must Have UVs
+### All Meshes Must Have UVs
 
 All meshes, regardless of how they are to be used, should not be missing UVs.
 
-### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
+### All Meshes Must Not Have Overlapping UVs for Lightmaps
 
 All meshes, regardless of how they are to be used, should have valid non-overlapping UVs.
 
-## 4.2 LODs Should Be Set Up Correctly
+## LODs Should Be Set Up Correctly
 
 This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
 
-## 4.3 Modular Socketless Assets Should Snap to the Grid Cleanly
+## Modular Socketless Assets Should Snap to the Grid Cleanly
 
 This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
 
 It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However, if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
 
-## 4.4 All Meshes Must Have Collision
+## All Meshes Must Have Collision
 
 Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
 
-## 4.5 All Meshes Should Be Scaled Correctly
+## All Meshes Should Be Scaled Correctly
 
 This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or Blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
