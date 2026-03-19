@@ -1,0 +1,23 @@
+---
+title: Blueprints
+description: Overview and compiling rules for UE5 Blueprint classes.
+---
+
+This section focuses on Blueprint classes and their internals. When possible, style rules conform to [Epic's Coding Standard](https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine).
+
+> Remember: Blueprinting badly bears blunders, beware!
+> — *KorkuVeren*
+
+## 3.1 Compiling
+
+All Blueprints should compile with zero warnings and zero errors. You should fix Blueprint warnings and errors immediately as they can quickly cascade into very scary unexpected behavior.
+
+Do _not_ submit broken Blueprints to source control. If you must store them on source control, shelve them instead.
+
+Broken Blueprints can cause problems that manifest in other ways, such as broken references, unexpected behavior, cooking failures, and frequent unneeded recompilation. A broken Blueprint has the power to break your entire game.
+
+<Cards>
+  <Card title="Variables" href="/docs/blueprints/variables" description="Naming, editability, categories, and access levels." />
+  <Card title="Functions & Events" href="/docs/blueprints/functions" description="Naming conventions for functions, events, and dispatchers." />
+  <Card title="Graphs" href="/docs/blueprints/graphs" description="Spaghetti prevention, alignment, and commenting." />
+</Cards>

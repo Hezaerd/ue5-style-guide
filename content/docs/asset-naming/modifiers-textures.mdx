@@ -1,0 +1,40 @@
+---
+title: "1.2.6 Textures"
+description: Naming modifiers and channel packing rules for textures in UE5.
+---
+
+## Texture Assets
+
+| Asset Type | Prefix | Suffix | Notes |
+| --- | --- | --- | --- |
+| Texture | `T_` | | |
+| Texture (Diffuse/Albedo/Base Color) | `T_` | `_D` | |
+| Texture (Normal) | `T_` | `_N` | |
+| Texture (Roughness) | `T_` | `_R` | |
+| Texture (Alpha/Opacity) | `T_` | `_A` | |
+| Texture (Ambient Occlusion) | `T_` | `_O` | |
+| Texture (Bump) | `T_` | `_B` | |
+| Texture (Emissive) | `T_` | `_E` | |
+| Texture (Mask) | `T_` | `_M` | |
+| Texture (Specular) | `T_` | `_S` | |
+| Texture (Metallic) | `T_` | `_M` | |
+| Texture (Packed) | `T_` | `_*` | See packing rules below. |
+| Texture Cube | `TC_` | | |
+| Media Texture | `MT_` | | |
+| Render Target | `RT_` | | |
+| Cube Render Target | `RTC_` | | |
+| Texture Light Profile | `TLP` | | |
+
+## 1.2.6.1 Texture Packing
+
+It is common practice to pack multiple layers of texture data into one texture. An example of this is packing Emissive, Roughness, and Ambient Occlusion together as the Red, Green, and Blue channels of a texture respectively.
+
+To determine the suffix, stack the given suffix letters from the table above together, e.g. `_ERO`.
+
+<Callout type="info">
+It is generally acceptable to include an Alpha/Opacity layer in your Diffuse/Albedo's alpha channel. Since this is common practice, adding `A` to the `_D` suffix is optional.
+</Callout>
+
+<Callout type="warn">
+Packing 4 channels of data into a texture (RGBA) is not recommended except for an Alpha/Opacity mask in the Diffuse/Albedo's alpha channel, as a texture with an alpha channel incurs more overhead than one without.
+</Callout>

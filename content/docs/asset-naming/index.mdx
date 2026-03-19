@@ -1,0 +1,64 @@
+---
+title: Asset Naming Conventions
+description: Base asset naming pattern and examples for UE5 projects.
+---
+
+Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+
+Most things are prefixed with an acronym of the asset type followed by an underscore.
+
+## 1.1 Base Asset Name
+
+All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group should follow the pattern:
+
+```
+Prefix_BaseAssetName_Variant_Suffix
+```
+
+- **`Prefix`** and **`Suffix`** are determined by the asset type through the [modifier tables](/docs/asset-naming/modifiers-common).
+- **`BaseAssetName`** should be a short, easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `Bob`.
+- **`Variant`** is either a short recognizable name for logical sub-grouping, or a two-digit number starting at `01` for generic variations.
+
+### Variant Guidelines
+
+For **unique and specific** variations, use a descriptive name. An "Evil" skin for Bob would be `Bob_Evil`, a "Retro" skin would be `Bob_Retro`.
+
+For **generic** variations, use a two-digit number: `Rock_01`, `Rock_02`, `Rock_03`. Except for rare exceptions, you should never need a three-digit variant. If you have more than 100 assets, consider reorganizing with different base names or multiple variant names.
+
+You can **chain** variant names. For an Arch Viz project with flooring: `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+
+### Examples
+
+#### Bob
+
+| Asset Type | Asset Name |
+| --- | --- |
+| Skeletal Mesh | `SK_Bob` |
+| Material | `M_Bob` |
+| Texture (Diffuse/Albedo) | `T_Bob_D` |
+| Texture (Normal) | `T_Bob_N` |
+| Texture (Evil Diffuse) | `T_Bob_Evil_D` |
+
+#### Rocks
+
+| Asset Type | Asset Name |
+| --- | --- |
+| Static Mesh (01) | `S_Rock_01` |
+| Static Mesh (02) | `S_Rock_02` |
+| Static Mesh (03) | `S_Rock_03` |
+| Material | `M_Rock` |
+| Material Instance (Snow) | `MI_Rock_Snow` |
+
+## 1.2 Asset Name Modifiers
+
+When naming an asset, use the modifier tables to determine the correct prefix and suffix. These are split across the following pages:
+
+<Cards>
+  <Card title="Most Common" href="/docs/asset-naming/modifiers-common" description="Blueprints, materials, meshes, textures, and other everyday assets." />
+  <Card title="Animations" href="/docs/asset-naming/modifiers-animations" description="Montages, sequences, blend spaces, and skeletons." />
+  <Card title="Artificial Intelligence" href="/docs/asset-naming/modifiers-ai" description="Behavior trees, blackboards, EQS, and AI controllers." />
+  <Card title="Blueprints" href="/docs/asset-naming/modifiers-blueprints" description="Blueprint types, enumerations, structures, and interfaces." />
+  <Card title="Materials" href="/docs/asset-naming/modifiers-materials" description="Materials, instances, functions, and physical materials." />
+  <Card title="Textures" href="/docs/asset-naming/modifiers-textures" description="Texture types, suffixes, and channel packing." />
+  <Card title="Misc, Sounds, UI & More" href="/docs/asset-naming/modifiers-misc" description="Data tables, sounds, physics, Paper 2D, UI, and effects." />
+</Cards>

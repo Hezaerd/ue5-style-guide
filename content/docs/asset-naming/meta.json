@@ -1,0 +1,13 @@
+{
+  "title": "Asset Naming",
+  "pages": [
+    "index",
+    "modifiers-common",
+    "modifiers-animations",
+    "modifiers-ai",
+    "modifiers-blueprints",
+    "modifiers-materials",
+    "modifiers-textures",
+    "modifiers-misc"
+  ]
+}

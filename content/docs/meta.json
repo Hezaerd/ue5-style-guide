@@ -1,0 +1,17 @@
+{
+  "title": "UE5 Style Guide",
+  "pages": [
+    "---Foundations---",
+    "principles",
+    "---Assets---",
+    "asset-naming",
+    "content-directory",
+    "---Blueprints---",
+    "blueprints",
+    "---Art & Levels---",
+    "static-meshes",
+    "niagara",
+    "levels",
+    "textures"
+  ]
+}

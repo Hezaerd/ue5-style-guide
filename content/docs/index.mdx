@@ -1,31 +1,56 @@
 ---
-title: Hello World
-description: Your favourite docs framework.
-icon: Rocket
+title: Introduction
+description: A mostly reasonable approach to Unreal Engine 5 projects.
 ---
 
-Hey there! Fumadocs is the docs framework that also works on Tanstack Start!
+A set of conventions for keeping your Unreal Engine 5 projects clean, consistent, and collaborative. Covers asset naming, content directory layout, Blueprints, static meshes, Niagara, levels, and textures.
 
-## Heading
+Heavily inspired by the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript).
 
-Hello World!
+<Callout type="info">
+This guide is adapted from the [Gamemakin UE5 Style Guide](https://github.com/Allar/ue5-style-guide) by Michael Allar, licensed under MIT. It has been restructured for easier navigation and updated for modern UE5 workflows.
+</Callout>
+
+## How to Use This Guide
+
+Every section is numbered for easy reference and linking. The guide is organized into major topics you can navigate from the sidebar:
 
 <Cards>
-  <Card title="Learn more about Tanstack Start" href="https://tanstack.com/start" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card title="Principles" href="/docs/principles" description="Core philosophy — why consistency matters and how to enforce it." />
+  <Card title="Asset Naming" href="/docs/asset-naming" description="Prefixes, suffixes, and base names for every asset type." />
+  <Card title="Content Directory" href="/docs/content-directory" description="Folder structure that scales with your project." />
+  <Card title="Blueprints" href="/docs/blueprints" description="Variables, functions, events, and graph hygiene." />
+  <Card title="Static Meshes" href="/docs/static-meshes" description="UVs, LODs, collision, and scaling." />
+  <Card title="Niagara" href="/docs/niagara" description="Naming rules for Niagara systems." />
+  <Card title="Levels / Maps" href="/docs/levels" description="Error-free maps, lighting, and marketplace rules." />
+  <Card title="Textures" href="/docs/textures" description="Dimensions, density, sizing, and grouping." />
 </Cards>
 
-### CodeBlock
+## Terminology
 
-```ts
-console.log('Hello World');
-```
+Before diving in, a few terms used throughout:
 
-#### Table
+### Levels / Maps
 
-| Head                            | Description                         |
-| ------------------------------- | ----------------------------------- |
-| `hello`                         | Hello World                         |
-| very **important**              | Hey                                 |
-| _Surprisingly_                  | Fumadocs                            |
-| very long text that looks weird | hello world hello world hello world |
+The word "map" generally refers to what the average person calls a "level" and may be used interchangeably.
+
+### Identifiers
+
+An `Identifier` is anything that resembles or serves as a "name" — the name of an asset, a material layer, a Blueprint property, a variable, a folder, a data table row, etc.
+
+### Cases
+
+There are a few different ways you can case words when naming:
+
+| Case | Example | Description |
+| --- | --- | --- |
+| **PascalCase** | `DesertEagle`, `StyleGuide` | Capitalize every word, remove all spaces. |
+| **camelCase** | `desertEagle`, `styleGuide` | First letter lowercase, following words capitalized. |
+| **Snake_case** | `desert_Eagle`, `Style_Guide` | Words separated by underscores. |
+
+### Variables / Properties
+
+The words "variable" and "property" are generally interchangeable. When used together in the same context:
+
+- **Property** usually refers to a variable defined in a class (e.g., `bExploded` is a property of `BP_Barrel`). Implies accessing previously defined data.
+- **Variable** usually refers to a function argument or local variable. Implies discussion about its definition and what it will hold.

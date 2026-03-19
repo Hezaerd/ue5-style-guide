@@ -1,0 +1,68 @@
+---
+title: Principles
+description: Core philosophy and globally enforced rules for UE5 projects.
+---
+
+## 0. Principles
+
+These principles have been adapted from the [idiomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+
+### 0.1 If Your Project Already Has a Style Guide, Follow It
+
+If you are working on a project or with a team that has a pre-existing style guide, it should be respected. Any inconsistency between an existing style guide and this guide should defer to the existing one.
+
+Style guides should be living documents. You should propose changes to an existing style guide as well as this guide if you feel the change benefits all usages.
+
+> "Arguments over style are pointless. There should be a style guide, and you should follow it."
+> — *Rebecca Murphey*
+
+### 0.2 All Structure, Assets, and Code Should Look Like a Single Person Created It
+
+Moving from one project to another should not cause a re-learning of style and structure. Conforming to a style guide removes unneeded guesswork and ambiguities.
+
+It also allows for more productive creation and maintenance as one does not need to think about style — simply follow the instructions. This style guide is written with best practices in mind, meaning that by following it you will also minimize hard-to-track issues.
+
+### 0.3 Friends Do Not Let Friends Have Bad Style
+
+If you see someone working against a style guide or without one, try to correct them.
+
+When working within a team or discussing within a community, it is far easier to help and to ask for help when people are consistent. Nobody likes to help untangle someone's Blueprint spaghetti or deal with assets that have incomprehensible names.
+
+If you are helping someone whose work conforms to a different but consistent and sane style guide, you should be able to adapt to it. If they do not conform to any style guide, please direct them here.
+
+### 0.4 A Team Without a Style Guide Is No Team of Mine
+
+When joining a UE5 team, one of your first questions should be "Do you have a style guide?" If the answer is no, you should be skeptical about their ability to work as a team.
+
+### 0.5 Don't Break the Law
+
+Please don't introduce illegal actions and behavior to a project, including but not limited to:
+
+- Don't distribute content you don't have the rights to distribute
+- Don't infringe on someone else's copyrighted or trademark material
+- Don't steal content
+- Follow licensing restrictions on content, e.g. attribute when attributions are needed
+
+---
+
+## 00. Globally Enforced Opinions
+
+### 00.1 Forbidden Characters
+
+#### Identifiers
+
+In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+
+- White space of any kind
+- Backward slashes `\`
+- Symbols i.e. `#!@$%`
+- Any Unicode character
+
+Any `Identifier` should strive to only have the following characters when possible (the RegEx `[A-Za-z0-9_]+`):
+
+- `ABCDEFGHIJKLMNOPQRSTUVWXYZ`
+- `abcdefghijklmnopqrstuvwxyz`
+- `1234567890`
+- `_` (sparingly)
+
+This ensures the greatest compatibility across all platforms, all tools, and helps prevent downtime due to potentially bad character handling for identifiers in code you don't control.
