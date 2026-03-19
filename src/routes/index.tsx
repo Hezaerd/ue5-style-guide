@@ -6,41 +6,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const sections = [
-  {
-    title: "Principles",
-    description: "Core philosophy and guiding rules for project consistency.",
-    href: "principles",
-  },
-  {
-    title: "Asset Naming",
-    description:
-      "Naming conventions, prefixes, and suffixes for all asset types.",
-    href: "asset-naming",
-  },
-  {
-    title: "Content Directory",
-    description: "Folder structure and organization for project content.",
-    href: "content-directory",
-  },
-  {
-    title: "Blueprints",
-    description:
-      "Variables, functions, events, and graph best practices.",
-    href: "blueprints",
-  },
-  {
-    title: "Static Meshes",
-    description: "UVs, LODs, collision, and scaling standards.",
-    href: "static-meshes",
-  },
-  {
-    title: "Textures",
-    description: "Dimensions, density, sizing, and grouping rules.",
-    href: "textures",
-  },
-];
-
 function Home() {
   return (
     <HomeLayout {...baseOptions()}>
@@ -68,28 +33,10 @@ function Home() {
         <Link
           to="/docs/$"
           params={{ _splat: "" }}
-          className="px-6 py-2.5 rounded-lg bg-fd-primary text-fd-primary-foreground font-semibold text-sm mb-12 transition-shadow hover:shadow-[0_0_24px_rgba(42,229,178,0.35)]"
+          className="px-6 py-2.5 rounded-lg bg-fd-primary text-fd-primary-foreground font-semibold text-sm transition-shadow hover:shadow-[0_0_24px_rgba(42,229,178,0.35)]"
         >
           Read the Guide
         </Link>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-          {sections.map((s) => (
-            <Link
-              key={s.href}
-              to="/docs/$"
-              params={{ _splat: s.href }}
-              className="group border border-fd-border border-l-2 border-l-fd-primary/30 rounded-lg p-4 text-left transition-all hover:bg-fd-accent/50 hover:border-l-fd-primary hover:-translate-y-0.5 hover:shadow-lg hover:shadow-fd-primary/5"
-            >
-              <h2 className="font-semibold text-base mb-1 group-hover:text-fd-primary transition-colors">
-                {s.title}
-              </h2>
-              <p className="text-fd-muted-foreground text-sm">
-                {s.description}
-              </p>
-            </Link>
-          ))}
-        </div>
       </div>
     </HomeLayout>
   );
