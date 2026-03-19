@@ -45,7 +45,7 @@ function Home() {
   return (
     <HomeLayout {...baseOptions()}>
       <div className="flex flex-col items-center justify-center flex-1 px-4 py-16 max-w-4xl mx-auto">
-        <h1 className="font-bold text-4xl mb-3 text-center">
+        <h1 className="font-extrabold text-5xl md:text-6xl mb-4 text-center bg-linear-to-r from-[#13d9cd] to-[#4effd2] bg-clip-text text-transparent">
           UE5 Style Guide
         </h1>
         <p className="text-fd-muted-foreground text-center text-lg mb-2 max-w-2xl">
@@ -68,7 +68,7 @@ function Home() {
         <Link
           to="/docs/$"
           params={{ _splat: "" }}
-          className="px-5 py-2.5 rounded-lg bg-fd-primary text-fd-primary-foreground font-medium text-sm mb-12"
+          className="px-6 py-2.5 rounded-lg bg-fd-primary text-fd-primary-foreground font-semibold text-sm mb-12 transition-shadow hover:shadow-[0_0_24px_rgba(42,229,178,0.35)]"
         >
           Read the Guide
         </Link>
@@ -79,9 +79,11 @@ function Home() {
               key={s.href}
               to="/docs/$"
               params={{ _splat: s.href }}
-              className="border border-fd-border rounded-lg p-4 hover:bg-fd-accent/50 transition-colors text-left"
+              className="group border border-fd-border border-l-2 border-l-fd-primary/30 rounded-lg p-4 text-left transition-all hover:bg-fd-accent/50 hover:border-l-fd-primary hover:-translate-y-0.5 hover:shadow-lg hover:shadow-fd-primary/5"
             >
-              <h2 className="font-semibold text-base mb-1">{s.title}</h2>
+              <h2 className="font-semibold text-base mb-1 group-hover:text-fd-primary transition-colors">
+                {s.title}
+              </h2>
               <p className="text-fd-muted-foreground text-sm">
                 {s.description}
               </p>
