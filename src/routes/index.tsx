@@ -10,7 +10,7 @@ function Home() {
   return (
     <HomeLayout {...baseOptions()}>
       <div className="flex flex-col items-center justify-center flex-1 px-4 py-16 max-w-4xl mx-auto">
-        <h1 className="font-extrabold text-5xl md:text-6xl mb-4 text-center bg-linear-to-r from-[#13d9cd] to-[#4effd2] bg-clip-text text-transparent">
+        <h1 className="font-display font-extrabold text-5xl md:text-6xl mb-4 text-center bg-linear-to-r from-[#13d9cd] to-[#4effd2] bg-clip-text text-transparent">
           UE5 Style Guide
         </h1>
         <p className="text-fd-muted-foreground text-center text-lg mb-2 max-w-2xl">
