@@ -12,20 +12,20 @@
   --font-display:
     "Sora Variable", ui-sans-serif, system-ui, sans-serif;
 
-  --color-fd-background: hsl(170, 4%, 96%);
+  --color-fd-background: hsl(170, 4%, 97.5%);
   --color-fd-foreground: hsl(210, 15%, 8%);
   --color-fd-muted: hsl(170, 4%, 93%);
   --color-fd-muted-foreground: hsl(170, 5%, 42%);
   --color-fd-popover: hsl(170, 4%, 98%);
   --color-fd-popover-foreground: hsl(200, 10%, 15%);
-  --color-fd-card: hsl(170, 4%, 95%);
+  --color-fd-card: hsl(170, 4%, 93%);
   --color-fd-card-foreground: hsl(210, 15%, 8%);
-  --color-fd-border: hsla(165, 12%, 70%, 0.35);
+  --color-fd-border: hsla(165, 16%, 70%, 0.4);
   --color-fd-primary: hsl(161, 70%, 38%);
   --color-fd-primary-foreground: hsl(0, 0%, 100%);
   --color-fd-secondary: hsl(170, 4%, 92%);
   --color-fd-secondary-foreground: hsl(210, 15%, 8%);
-  --color-fd-accent: hsla(165, 15%, 82%, 0.45);
+  --color-fd-accent: hsla(165, 15%, 82%, 0.55);
   --color-fd-accent-foreground: hsl(210, 15%, 8%);
   --color-fd-ring: hsl(161, 55%, 42%);
   --color-fd-overlay: hsla(0, 0%, 0%, 0.2);
@@ -57,6 +57,12 @@
   --color-fd-muted-foreground: hsl(160, 5%, 58%);
 }
 
+:root:not(.dark) #nd-sidebar {
+  --color-fd-muted: hsl(188, 7%, 93%);
+  --color-fd-secondary: hsl(188, 6%, 90%);
+  --color-fd-muted-foreground: hsl(175, 6%, 40%);
+}
+
 .dark body::before {
   content: "";
   position: absolute;
@@ -68,6 +74,22 @@
     ellipse 70% 100% at 50% 0%,
     rgba(0, 255, 221, 0.35) 0%,
     transparent 80%
+  );
+  pointer-events: none;
+  z-index: 60;
+}
+
+:root:not(.dark) body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  background: radial-gradient(
+    ellipse 75% 100% at 50% 0%,
+    rgba(19, 217, 205, 0.08) 0%,
+    transparent 78%
   );
   pointer-events: none;
   z-index: 60;
